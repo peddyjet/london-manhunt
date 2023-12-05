@@ -1,0 +1,27 @@
+.centred {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.centred * {
+    align-self: center;
+    text-align: center;
+}
+
+.text-aligned {
+    text-align: center;
+}
+
+.screen-height {
+    height: 100vh;
+}
+
+.red {
+    text-decoration: underline;
+    color: red !important; 
+}
+
+.margin {
+    margin-bottom: 1rem;
+}
