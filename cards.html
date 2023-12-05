@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clive London Manhunt</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+  <section class="section centred screen-height">
+    <div class="container">
+      <h1 class="title">
+        Runner <strong class="red">Cards</strong> 🎴
+      </h1>
+      <a class="button is-link margin" href="index.html">Home Page</a>
+      <section class="hero is-primary margin">
+        <div class="hero-body">
+          <p class="title" id="card_title">
+            Title
+          </p>
+          <p class="subtitle" id="card_desc">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi laboriosam quos ipsam minima pariatur corporis reiciendis obcaecati illum, consectetur architecto vel sit, facere modi iusto, dolorum nemo labore perspiciatis eos!
+          </p>
+          <p class="subtitle"><strong>This card is worth: </strong><span id="card_credits"></span> Credits</p>
+        </div>
+      </section>
+
+      <button class="button is-info" id="new_card">New Card</button>
+    </div>
+  </section>
+
+  <script>
+    const cards = [
+      {
+        title: "Murder Alert",
+        desc: "Look online for a nearby area which a murder has taken place in. Walk there and take a photo of you looking frightened.",
+        credits: 4
+      },
+      {
+        title: "The Hot Potato",
+        desc: "Find a cafe that sells Jacket Potatoes and take a photo of its menu. You do not have to buy the jacket potato to complete the card.",
+        credits: 3
+      },
+      {
+        title: "Fortnite Battle Pass",
+        desc: "Find the Fortnite logo in the wild, and take a photo of it. The logo mustn't be on a digital display, but instead printed onto something.",
+        credits: 2
+      },
+      {
+        title: "Pret A Manger",
+        desc: "Find three Pret A Mangers in your current borough. If there are less than three in existance, then this card is automatically succeeded.",
+        credits: 3
+      },
+      {
+        title: "The guesstimation",
+        desc: "You must guess the current population of the borough (or the City of London) you are currently in. If your guess is within 20% of it's actual population, you succeed. Else, you automatically forfiet the card.",
+        credits: 4
+      },
+      {
+        title: "Place of Interest",
+        desc: "Go to a place of interest in your nearby area. This can include parks, museums, heritage sites or anything else that is interesting.",
+        credits: 3
+      },
+      {
+        title: "Oui Oui",
+        desc: "Find non-english writing somewhere nearby. Send a voice message to every other player with what it says.",
+        credits: 2
+      },
+      {
+        title: "Spoons",
+        desc: "Go to your nearest Weatherspoons and take a selfie with it.",
+        credits: 3
+      },
+      {
+        title: "The Trumpet",
+        desc: "Go to a nearby public restroom and blow a raspberry in a toilet stall. Record this and send it to every other player.",
+        credits: 4
+      },
+      {
+        title: "Close Call",
+        desc: "Tap another runner on the shoulder. You may use public transport without expending credits to complete this card.",
+        credits: 5
+      },
+      {
+        title: "Small Street",
+        desc: 'Find a street sign with less than five alphanumeric characters in its name. This does not include words like "street" or "road".',
+        credits: 3
+      },
+      {
+        title: "MARMALDADE",
+        desc: "Find a jar of marmalade, take a photo of it and send that photo to Kevin via <a style='color: blue;' href='mailto:kjacques@lincoln.ac.uk'>email</a>.",
+        credits: 3
+      },
+      {
+        title: "Sitting Duck",
+        desc: "Record a video of a duck not moving for at least three seconds.",
+        credits: 4
+      },
+      {
+        title: "Primani",
+        desc: "Go to your nearest Primark. You may use public transport without expending credits to complete this card.",
+        credits: 2
+      },
+      {
+        title: "A Monk's Rite",
+        desc: "Sit on your nearest bench and meditate for five minutes. If you are within 200m of a tube station, you can complete this card by meditating on a train.",
+        credits: 3
+      },
+      {
+        title: "Roundels",
+        desc: "Find a unique TfL roundel. This includes celebratory roundels, coach roundels or out-of-place roundels. You may use public transport without expending credits to complete this card.",
+        credits: 4
+      },
+      {
+        title: "Race the tube",
+        desc: "Walk between two Underground, Elizabeth Line, DLR or Overground stations on the same line, which are connected to each other.",
+        credits: 5
+      },
+      {
+        title: "Crippling Coke Addiction",
+        desc: "Find a bottle of Diet Coke/Pepsi which costs over £2.40. Take a photo of its price.",
+        credits: 3
+      },
+      {
+        title: "Deserves a Michelin Star",
+        desc: "Look online for a 1-star-rated shop or cafe. Go there in person and take a photo of its store front.",
+        credits: 4
+      },
+      {
+        title: "Partisan",
+        desc: "Find a political-party logo somewhere in the wild. Take a photo of it.",
+        credits: 3
+      },
+      {
+        title: "Pride",
+        desc: "Find a pride or LGBTQ+ flag in the wild. Take a photo of it.",
+        credits: 3
+      },
+      {
+        title: "Guns and glory",
+        desc: "See a gun or a photo of a gun on the street/being carried. Take a photo of it.",
+        credits: 4
+      },
+      {
+        title: "Waterloo and City",
+        desc: "Travel to Bank and then go to Waterloo without using the Waterloo and City line. You may use public transport without expending credits to complete this card.",
+        credits: 5
+      },
+      {
+        title: "Playing with your life",
+        desc: "Travel to the borough that a hunter is currently inside of. If a hunter is in your borough when you draw this card, you must travel to a different borough. You may use public transport without expending credits to complete this card.",
+        credits: 6
+      },
+      {
+        title: "Tree Hugger",
+        desc: "Take a video of yourself hugging a tree.",
+        credits: 2
+      },
+      {
+        title: "Bike Ride",
+        desc: "Hide a Stantander Cycle for 30 minutes (Lewis will pay for it), and ride it for at least 15 minutes. You do not need to spend credits to ride the bike.",
+        credits: 3
+      },
+      {
+        title: "Tall Building",
+        desc: "Take a photo of a building with at least five stories.",
+        credits: 2
+      },
+      {
+        title: "Tasty Water",
+        desc: "Find a water fountain and drink from it. This can either be from the mouth or by filling up a bottle.",
+        credits: 3
+      },
+      {
+        title: "Find a lie",
+        desc: "Find some writing which is blantant misinformation or is incorrect in some way. This can range from 'Best Pizza in London' all the way to 'The earth is a trapezium'.",
+        credits: 4
+      },
+      {
+        title: "I am Bossman",
+        desc: "Find a piece of clothing which costs more than £100, and take a photo of it.",
+        credits: 4
+      },
+    ]
+
+    function generateNewCard(){
+      card = cards[Math.floor(Math.random() * cards.length)]
+      
+      document.getElementById('card_title').innerHTML = card.title
+      document.getElementById('card_desc').innerHTML = card.desc
+      document.getElementById('card_credits').innerHTML = card.credits
+    }
+
+    document.getElementById('new_card').addEventListener('click', generateNewCard)
+    generateNewCard()
+  </script>
+  </body>
+</html>
